@@ -32,6 +32,7 @@
 package com.toy.anagrams.ui;
 
 import com.toy.anagrams.lib.WordLibrary;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -77,6 +78,7 @@ public class Anagrams extends JFrame {
 
     private int wordIdx = 0;
     private WordLibrary wordLibrary;
+    private Color originalBackgroundColor  = null;
 
     /** Creates new form Anagrams */
     public Anagrams() {
@@ -253,6 +255,9 @@ public class Anagrams extends JFrame {
         feedbackLabel.setText(" ");
         scrambledWord.setText(wordLibrary.getScrambledWord(wordIdx));
         guessedWord.setText("");
+        if((guessedWord.getBackground().equals(Color.RED) || (guessedWord.getBackground().equals(Color.GREEN))))    {
+            guessedWord.setBackground(originalBackgroundColor);
+        }
         getRootPane().setDefaultButton(guessButton);
 
         guessedWord.requestFocusInWindow();
@@ -263,12 +268,16 @@ public class Anagrams extends JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void guessedWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessedWordActionPerformed
+        
+        originalBackgroundColor  =  guessedWord.getBackground();
         if (wordLibrary.isCorrect(wordIdx, guessedWord.getText())){
             feedbackLabel.setText("Correct! Try a new word!");
+            guessedWord.setBackground(Color.GREEN);
             getRootPane().setDefaultButton(nextTrial);
         } else {
             feedbackLabel.setText("Incorrect! Try again!");
-            guessedWord.setText("");
+            guessedWord.setBackground(Color.red);
+//            guessedWord.setText("");
         }
 
         guessedWord.requestFocusInWindow();

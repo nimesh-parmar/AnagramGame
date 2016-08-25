@@ -255,7 +255,7 @@ public class Anagrams extends JFrame {
         feedbackLabel.setText(" ");
         scrambledWord.setText(wordLibrary.getScrambledWord(wordIdx));
         guessedWord.setText("");
-        if((guessedWord.getBackground().equals(Color.RED) || (guessedWord.getBackground().equals(Color.GREEN))))    {
+        if((guessedWord.getBackground().equals(Color.YELLOW) || (guessedWord.getBackground().equals(Color.BLUE))))    {
             guessedWord.setBackground(originalBackgroundColor);
         }
         getRootPane().setDefaultButton(guessButton);
